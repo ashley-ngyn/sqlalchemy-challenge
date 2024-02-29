@@ -1,0 +1,8 @@
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+
+DS_Store
+.ipynb_checkpoints
+_pycache_
+AM_working_file.ipynb
