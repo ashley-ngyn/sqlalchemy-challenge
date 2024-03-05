@@ -74,6 +74,9 @@ def precipitation():
 
     prep_dict = dict(scores)
 
+    # added to prevent threads from session being "occupied"
+    session.close()
+
     return jsonify(prep_dict)
 
 
@@ -91,6 +94,8 @@ def stations():
                         order_by(func.count(Measurement.station).desc()).all()
     
     station_dict = dict(active)
+
+    session.close()
 
     return jsonify(station_dict)
 
@@ -117,6 +122,8 @@ def tobs():
         tobs_dict['tobs'] = t
         tobs_list.append(tobs_dict)
 
+    session.close()
+
     return jsonify(tobs_list)
 
 
@@ -142,6 +149,8 @@ def start_temp(start):
         temps_dict['maximum temperature'] = tmax
         temp_list.append(temps_dict)
 
+    session.close()
+
     return jsonify(temp_list)
 
 # /api/v1.0/<start>/<end>
@@ -163,6 +172,8 @@ def start_end_temp(start, end):
         temps2_dict['average temperature'] = tavg
         temps2_dict['maximum temperature'] = tmax
         temp2_list.append(temps2_dict)
+    
+    session.close()
 
     return jsonify(temp2_list)
 
